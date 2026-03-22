@@ -1,12 +1,15 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template_string
+from google import genai
 import json
 import os
-import datetime
-from google import genai
+from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
-API_KEY = "AIzaSyBeI3MqfHetRu1_G9MEZ_5X3HM9yIeDrjo"
+API_KEY = os.environ.get("GEMINI_API_KEY")
 HISTORY_FILE = "chat_history.json"
 GAP_THRESHOLD_HOURS = 3
 
