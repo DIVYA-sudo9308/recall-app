@@ -47,8 +47,8 @@ def detect_gap_and_stale_context(history):
     if not last_msg_time_str:
         return False, []
 
-    last_msg_time = datetime.datetime.fromisoformat(last_msg_time_str)
-    now = datetime.datetime.now()
+    last_msg_time = datetime.fromisoformat(last_msg_time_str)
+    now = datetime.now()
     gap_hours = (now - last_msg_time).total_seconds() / 3600
 
     if gap_hours < GAP_THRESHOLD_HOURS:
@@ -352,7 +352,7 @@ def chat():
 
     gap_detected, stale_snippets = detect_gap_and_stale_context(history)
 
-    now = datetime.datetime.now().isoformat()
+    now = datetime.now().isoformat()
     history.append({
         "role": "user",
         "content": user_message,
@@ -369,7 +369,7 @@ def chat():
 
         reply_text = response.text
 
-        reply_time = datetime.datetime.now().isoformat()
+        reply_time = datetime.now().isoformat()
         history.append({
             "role": "assistant",
             "content": reply_text,
